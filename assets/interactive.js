@@ -1,4 +1,4 @@
-var cards = [];
+let cards = [];
 let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 
 function createCards() {
@@ -17,15 +17,11 @@ function createCards() {
             // }
             // if statement vs switch statement. same result
             switch (j) {
-                case 1: 
-                    console.log("Only a test");
-                    cards.push("A" + " of " + suits[i]); 
-                    break;
+                case 1: cards.push("A" + " of " + suits[i]); break;
                 case 11: cards.push("J" + " of " + suits[i]); break;
                 case 12: cards.push("Q" + " of " + suits[i]); break;
                 case 13: cards.push("K" + " of " + suits[i]); break;
-                default: 
-                    cards.push(j + " of " + suits[i]); 
+                default: cards.push(j + " of " + suits[i]); 
             }
         }
     }
