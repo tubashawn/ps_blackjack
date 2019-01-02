@@ -40,7 +40,12 @@ function getNextCard() {
     return cards.shift();
 }
 
+function getCardString(card) {
+    return card.value + " of " + card.suit;
+} 
 
-// let playerCards = [getNextCard(), getNextCard()];
+let playerCards = [getNextCard(), getNextCard()];
 console.log(cards);
-console.log(playerCards);
+console.log("You are dealt: ");
+console.log(" " + getCardString(playerCards[0]));
+console.log(" " + getCardString(playerCards[1]));
