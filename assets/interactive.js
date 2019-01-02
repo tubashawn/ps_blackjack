@@ -28,4 +28,12 @@ function createCards() {
 }
 
 createCards();
-console.log(cards);
+
+function getNextCard() {
+    return cards.shift();
+}
+
+
+let playerCards = [getNextCard(), getNextCard()];
+
+console.log(playerCards);
