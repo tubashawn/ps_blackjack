@@ -4,23 +4,10 @@ let suits = ["Hearts", "Clubs", "Diamonds", "Spades"];
 function createCards() {
     for (let i = 0; i < 4; i++) {
         for (let j = 1; j <= 13; j++) {
-            // if (j == 1) {
-            //     cards.push("Ace" + " of " + suits[i]);
-            // } else if (j == 11) {
-            //     cards.push("Jack" + " of " + suits[i]);
-            // } else if(j == 12) {
-            //     cards.push("Queen" + " of " + suits[i]);
-            // } else if (j == 13) {
-            //     cards.push("King" + " of " + suits[i]);
-            // } else {
-            //     cards.push(j + " of " + suits[i]); 
-            // }
-            // if statement vs switch statement. same result
             let card = {
                 suit: suits[i],
                 value: j
             };
-
             switch (j) {
                 case 1: card.value = "Ace"; break;
                 case 11: card.value = "Jack"; break;
@@ -28,7 +15,6 @@ function createCards() {
                 case 13: card.value = "King"; break;
                 default: card.value = j; 
             }
-
             cards.push(card);
         }
     }
@@ -44,8 +30,37 @@ function getCardString(card) {
     return card.value + " of " + card.suit;
 } 
 
-let playerCards = [getNextCard(), getNextCard()];
-console.log(cards);
-console.log("You are dealt: ");
-console.log(" " + getCardString(playerCards[0]));
-console.log(" " + getCardString(playerCards[1]));
+// DOM variables
+let textArea = document.getElementById("text-area"),
+    okButton = document.getElementById("ok"),
+    newGameButton = document.getElementById("new-game-button"),
+    hitButton = document.getElementById("hit-button"),
+    stayButton = document.getElementById("stay-button");
+
+// Game variables
+let gameStarted = false,
+    gameOver = false,
+    playerWon = false,
+    dealerCards = [],
+    playerCards = [],
+    dealerScore = 0,
+    playerScore = 0,
+    deck = [];
+
+hitButton.style.display = "none";
+stayButton.style.display = "none";
+// showStatus();
+
+newGameButton.addEventListener("click", function() {
+    textArea.innerText = "Let's begin!!!";
+
+    gameStarted = true;
+    gameOver = false;
+    playerWon = false;
+
+    deck = cards;
+    console.log(deck);
+    newGameButton.style.display = "none";
+    hitButton.style.display = "block";
+    stayButton.style.display = "block";
+});
