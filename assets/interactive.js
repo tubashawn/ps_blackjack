@@ -58,6 +58,7 @@ newGameButton.addEventListener("click", function() {
     showStatus();
 });
 
+// TODO: Finish functionality for scores and to finish game.
 // Game functions
 function showStatus() {
     if (!gameStarted) {
