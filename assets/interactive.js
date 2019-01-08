@@ -74,7 +74,6 @@ stayButton.addEventListener("click", function() {
     showStatus();
 });
 
-// TODO: Finish functionality for scores and to finish game.
 // Game functions
 function showStatus() {
     if (!gameStarted) {
@@ -112,6 +111,31 @@ function showStatus() {
             stayButton.style.display = "none";
         }
 
+}
+
+function checkForEndOfGame() {
+    updateScores();
+    if (gameOver) {
+        while(dealerScore < playerScore
+                && playerScore <= 21
+                && dealerScore <= 21) {
+            dealerCards.push(getNextCard());
+            updateScores();
+        }
+    }
+    if (playerScore > 21) {
+        playerWon = false;
+        gameOver = true;
+    } else if (dealerScore > 21) {
+        playerWon = true;
+        gameOver = true;
+    } else if (gameOver) {
+        if (playerScore > dealerScore) {
+            playerWon = true;
+        } else {
+            playerWon = false;
+        }
+    }
 }
 
 function getCardNumericValue(card) {
@@ -165,3 +189,6 @@ function getNextCard() {
 function getCardString(card) {
     return card.value + " of " + card.suit;
 } 
+
+// TODO: 5 cards for dealer = dealer wins,, tie meassage, blackjack win meassage
+// TODO: convert to react app
