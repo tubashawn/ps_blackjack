@@ -25,7 +25,7 @@ createCards();
 
 // DOM variables
 let textArea = document.getElementById("text-area"),
-newGameButton = document.getElementById("new-game-button"),
+    newGameButton = document.getElementById("new-game-button"),
     hitButton = document.getElementById("hit-button"),
     stayButton = document.getElementById("stay-button");
     
@@ -40,7 +40,7 @@ newGameButton = document.getElementById("new-game-button"),
     deck = [];
 
     hitButton.style.display = "none";
-stayButton.style.display = "none";
+    stayButton.style.display = "none";
 showStatus();
 
 newGameButton.addEventListener("click", function() {
@@ -52,9 +52,25 @@ newGameButton.addEventListener("click", function() {
     
     deck = cards;
     shuffleDeck(deck);
+    dealerCards = [getNextCard(), getNextCard()];
+    playerCards = [getNextCard(), getNextCard()];
     newGameButton.style.display = "none";
     hitButton.style.display = "inline";
     stayButton.style.display = "inline";
+    showStatus();
+});
+
+hitButton.addEventListener("click", function() {
+    console.log("You hit me!");
+    playerCards.push(getNextCard());
+    checkForEndOfGame();
+    showStatus();
+
+});
+
+stayButton.addEventListener("click", function() {
+    gameOver = true;
+    checkForEndOfGame();
     showStatus();
 });
 
@@ -96,6 +112,37 @@ function showStatus() {
             stayButton.style.display = "none";
         }
 
+}
+
+function getCardNumericValue(card) {
+    switch(card.value) {
+        case "Ace": return 1;
+        case 2: return 2;
+        case 3: return 3;
+        case 4: return 4;
+        case 5: return 5;
+        case 6: return 6;
+        case 7: return 7;
+        case 8: return 8;
+        case 9: return 9;
+        default: return 10;
+    }
+}
+
+function getScore(cardArray) {
+    let score = 0;
+    let hasAce = false;
+    for (let i = 0; i < cardArray.length; i++) {
+        let card = cardArray[i];
+        score += getCardNumericValue(card);
+        if (card.value === "Ace") {
+            hasAce = true;
+        }
+    }
+    if (hasAce && score + 10 <= 21) {
+        return score + 10;
+    }
+    return score;
 }
 
 function updateScores() {
