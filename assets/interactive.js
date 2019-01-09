@@ -129,6 +129,9 @@ function checkForEndOfGame() {
     } else if (dealerScore > 21) {
         playerWon = true;
         gameOver = true;
+    } else if (dealerScore === playerScore) {
+        textArea.innerText += "|>---- It's a tie";
+        gameOver = true  
     } else if (gameOver) {
         if (playerScore > dealerScore) {
             playerWon = true;
