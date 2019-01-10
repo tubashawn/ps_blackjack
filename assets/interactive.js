@@ -166,9 +166,15 @@ function getScore(cardArray) {
             hasAce = true;
         }
     }
-    if (hasAce && score + 10 <= 21) {
+    if (hasAce && dealerScore == 21) {
+        textArea.innerText += "Dealer Black Jack!";
+        gameOver = true;
+    } else if (hasAce && dealerScore == 21) {
+        textArea.innerText += "Dealer Black Jack!";
+        gameOver = true;
+    } else if (hasAce && score + 10 <= 21) {
         return score + 10;
-    }
+    } 
     return score;
 }
 
@@ -193,5 +199,5 @@ function getCardString(card) {
     return card.value + " of " + card.suit;
 } 
 
-// TODO: 5 cards for dealer = dealer wins,, tie meassage, blackjack win meassage
+// TODO: 5 cards for dealer = dealer wins,, blackjack win meassage
 // TODO: convert to react app
